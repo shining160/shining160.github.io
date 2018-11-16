@@ -5,20 +5,20 @@
   
 
   
-  <title>平凡的技术爱好者，怀着伟大的梦想</title>
+  <title>Git使用教程 | 平凡的技术爱好者，怀着伟大的梦想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Git使用教程1.什么是git？git是一个分布式版本控制软件，与CVS、Subversion一类的集中式版本控制工具不同，它采用分布式版本库的做法，不需要服务器端软件，就可以运作版本控制。git不等于GitHub，git是一种技术，GitHub是一种使用了该技术提供服务的平台。 2.实现原理git本身关心文件的整体性是否有改变，git拒绝保持每个文件的版本修订关系，因此查看一个文件的历史需要遍历">
+  <meta name="description" content="1.什么是git？git是一个分布式版本控制软件，与CVS、Subversion一类的集中式版本控制工具不同，它采用分布式版本库的做法，不需要服务器端软件，就可以运作版本控制。git不等于GitHub，git是一种技术，GitHub是一种使用了该技术提供服务的平台。 2.实现原理git本身关心文件的整体性是否有改变，git拒绝保持每个文件的版本修订关系，因此查看一个文件的历史需要遍历各个histo">
 <meta name="keywords" content="技术开发，大数据，hadoop，spark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="平凡的技术爱好者，怀着伟大的梦想">
-<meta property="og:url" content="https://shining160.github.io/2018/11/17/git教程/index.html">
+<meta property="og:title" content="Git使用教程">
+<meta property="og:url" content="https://shining160.github.io/2018/11/12/git教程/index.html">
 <meta property="og:site_name" content="平凡的技术爱好者，怀着伟大的梦想">
-<meta property="og:description" content="Git使用教程1.什么是git？git是一个分布式版本控制软件，与CVS、Subversion一类的集中式版本控制工具不同，它采用分布式版本库的做法，不需要服务器端软件，就可以运作版本控制。git不等于GitHub，git是一种技术，GitHub是一种使用了该技术提供服务的平台。 2.实现原理git本身关心文件的整体性是否有改变，git拒绝保持每个文件的版本修订关系，因此查看一个文件的历史需要遍历">
+<meta property="og:description" content="1.什么是git？git是一个分布式版本控制软件，与CVS、Subversion一类的集中式版本控制工具不同，它采用分布式版本库的做法，不需要服务器端软件，就可以运作版本控制。git不等于GitHub，git是一种技术，GitHub是一种使用了该技术提供服务的平台。 2.实现原理git本身关心文件的整体性是否有改变，git拒绝保持每个文件的版本修订关系，因此查看一个文件的历史需要遍历各个histo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-16T18:37:03.150Z">
+<meta property="og:updated_time" content="2018-11-16T18:52:18.633Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="平凡的技术爱好者，怀着伟大的梦想">
-<meta name="twitter:description" content="Git使用教程1.什么是git？git是一个分布式版本控制软件，与CVS、Subversion一类的集中式版本控制工具不同，它采用分布式版本库的做法，不需要服务器端软件，就可以运作版本控制。git不等于GitHub，git是一种技术，GitHub是一种使用了该技术提供服务的平台。 2.实现原理git本身关心文件的整体性是否有改变，git拒绝保持每个文件的版本修订关系，因此查看一个文件的历史需要遍历">
+<meta name="twitter:title" content="Git使用教程">
+<meta name="twitter:description" content="1.什么是git？git是一个分布式版本控制软件，与CVS、Subversion一类的集中式版本控制工具不同，它采用分布式版本库的做法，不需要服务器端软件，就可以运作版本控制。git不等于GitHub，git是一种技术，GitHub是一种使用了该技术提供服务的平台。 2.实现原理git本身关心文件的整体性是否有改变，git拒绝保持每个文件的版本修订关系，因此查看一个文件的历史需要遍历各个histo">
   
     <link rel="alternate" href="/atom.xml" title="平凡的技术爱好者，怀着伟大的梦想" type="application/atom+xml">
   
@@ -71,17 +71,27 @@
       <div class="outer">
         <section id="main"><article id="post-git教程" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/17/git教程/" class="article-date">
-  <time datetime="2018-11-16T18:36:06.501Z" itemprop="datePublished">2018-11-16</time>
+    <a href="/2018/11/12/git教程/" class="article-date">
+  <time datetime="2018-11-12T00:00:00.000Z" itemprop="datePublished">2018-11-12</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git使用教程
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Git使用教程"><a href="#Git使用教程" class="headerlink" title="Git使用教程"></a>Git使用教程</h2><h3 id="1-什么是git？"><a href="#1-什么是git？" class="headerlink" title="1.什么是git？"></a>1.什么是git？</h3><pre><code>git是一个分布式版本控制软件，与CVS、Subversion一类的集中式版本控制工具不同，它采用分布式版本库的做法，不需要服务器端软件，就可以运作版本控制。git不等于GitHub，git是一种技术，GitHub是一种使用了该技术提供服务的平台。
+        <h3 id="1-什么是git？"><a href="#1-什么是git？" class="headerlink" title="1.什么是git？"></a>1.什么是git？</h3><pre><code>git是一个分布式版本控制软件，与CVS、Subversion一类的集中式版本控制工具不同，它采用分布式版本库的做法，不需要服务器端软件，就可以运作版本控制。git不等于GitHub，git是一种技术，GitHub是一种使用了该技术提供服务的平台。
 </code></pre><h3 id="2-实现原理"><a href="#2-实现原理" class="headerlink" title="2.实现原理"></a>2.实现原理</h3><pre><code>git本身关心文件的整体性是否有改变，git拒绝保持每个文件的版本修订关系，因此查看一个文件的历史需要遍历各个history快照；git隐式处理文件更名，即同名文件默认为其前身，如果没有同名文件则在前一个版本中搜索具有相似内容的文件。
 git更像一个文件系统，直接在本机上获取数据，不必连线到主机端获取数据。每个开发者都可有全部开发历史的本地副本，changes从这种本地repository复制给其他开发者。这些changes作为新增的开发分支被导入，可以与本地开发合并。
 分支是非常轻量级的，一个分支仅是对一个commit的引用。
@@ -115,7 +125,7 @@ git更像一个文件系统，直接在本机上获取数据，不必连线到�
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://shining160.github.io/2018/11/17/git教程/" data-id="cjokdmmzf0002hgq88korrnru" class="article-share-link">Share</a>
+      <a data-url="https://shining160.github.io/2018/11/12/git教程/" data-id="cjokdtm7i0002psq8u26wjz6b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -124,19 +134,19 @@ git更像一个文件系统，直接在本机上获取数据，不必连线到�
     
 <nav id="article-nav">
   
-    <a href="/2018/11/17/spark详解/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/17/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          (no title)
+          Hello World
         
       </div>
     </a>
   
   
-    <a href="/2018/11/17/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/11/10/spark详解/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">Spark详解</div>
     </a>
   
 </nav>
@@ -173,15 +183,15 @@ git更像一个文件系统，直接在本机上获取数据，不必连线到�
       <ul>
         
           <li>
-            <a href="/2018/11/17/spark详解/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/17/git教程/">(no title)</a>
-          </li>
-        
-          <li>
             <a href="/2018/11/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/12/git教程/">Git使用教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/10/spark详解/">Spark详解</a>
           </li>
         
       </ul>

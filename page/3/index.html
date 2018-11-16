@@ -70,10 +70,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-spark详解" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/17/hello-world/" class="article-date">
-  <time datetime="2018-11-16T17:56:34.586Z" itemprop="datePublished">2018-11-16</time>
+    <a href="/2018/11/10/spark详解/" class="article-date">
+  <time datetime="2018-11-10T00:00:00.000Z" itemprop="datePublished">2018-11-10</time>
 </a>
     
   </div>
@@ -84,7 +84,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/17/hello-world/">Hello World</a>
+      <a class="article-title" href="/2018/11/10/spark详解/">Spark详解</a>
     </h1>
   
 
@@ -92,20 +92,70 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+        <h2 id="Spark生态圈"><a href="#Spark生态圈" class="headerlink" title="Spark生态圈"></a>Spark生态圈</h2><blockquote>
+<p>Spark Core：最重要，其中最重要的是RDD（弹性分布式数据集）<br>Spark SQL<br>Spark Streaming<br>Spark MLlib：协同回归、ALS、逻辑回归<br>Spark Graphx：图计算</p>
+</blockquote>
+<h2 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h2><h3 id="一-什么是Spark？特点？"><a href="#一-什么是Spark？特点？" class="headerlink" title="一.什么是Spark？特点？"></a>一.什么是Spark？特点？</h3><p>官网：spark.apache.org，是一个大规模的分布式数据处理引擎<br>类似MapReduce，Spark只有数据计算，不负责存储，所以不能完全取代Hadoop<br>特点：快、易用、通用、兼容<br>为什么学习Spark? 基于内存，计算速度快。<br>MapReduce 2.x的核心是Shuffle，但会产生大量IO操作，影响性能。而Spark基于内存，有更快的处理速度。</p>
+<h3 id="二、安装和部署Spark、Spark的HA"><a href="#二、安装和部署Spark、Spark的HA" class="headerlink" title="二、安装和部署Spark、Spark的HA"></a>二、安装和部署Spark、Spark的HA</h3><h4 id="1-Spark的体系架构"><a href="#1-Spark的体系架构" class="headerlink" title="1.Spark的体系架构"></a>1.Spark的体系架构</h4><p>主从架构 <a href="spark.apache.org/docs/latest/cluster-overview.html">spark.apache.org/docs/latest/cluster-overview.html</a><br><img src="./spark架构.jpg" alt="Alt text"></p>
+<h4 id="2-安装和配置Spark：以Standalone模式为例"><a href="#2-安装和配置Spark：以Standalone模式为例" class="headerlink" title="2.安装和配置Spark：以Standalone模式为例"></a>2.安装和配置Spark：以Standalone模式为例</h4><p>注意：Hadoop和Spark的命令脚本有冲突<br>(1) 准备工作：安装JDK、配置主机名和免密码登录<br>(2) 伪分布模式：在一台机器上，模拟一个分布式的环境（Master+Worker）</p>
+<blockquote>
+<p><code>vim conf/spark-env.sh</code><br>export JAVA_HOME=/root/training/jdk1.8.0_144<br>export SPARK_MASTER_HOST=node1<br>export SPARK_MASTER_PORT=7077  </p>
+</blockquote>
+<blockquote>
+<p><code>vim conf/slaves 配置从节点</code><br>node1</p>
+</blockquote>
+<blockquote>
+<p>启动Spark集群：sbin/start-all.sh<br>（单启动master：sbin/start-master.sh）<br>打开web：<a href="http://ip_node1:8080" target="_blank" rel="noopener">http://ip_node1:8080</a>  （内置了一个tomcat）</p>
+</blockquote>
+<p>(3) 全分布模式：三台机器 node1(master)、node2(worker)、node3(worker)</p>
+<blockquote>
+<p><code>vim conf/spark-env.sh</code><br>export JAVA_HOME=/root/training/jdk1.8.0_144<br>export SPARK_MASTER_HOST=node1<br>export SPARK_MASTER_PORT=7077 </p>
+</blockquote>
+<blockquote>
+<p><code>vim conf/slave</code>         配置从节点<br>node2<br>node3</p>
+</blockquote>
+<blockquote>
+<p>安装包拷贝到从节点：<br><code>scp -r path remote_path</code></p>
+</blockquote>
+<blockquote>
+<p>启动Spark集群：sbin/start-all.sh<br>（单启动master：sbin/start-master.sh）<br>打开web：<a href="http://ip_node1:8080" target="_blank" rel="noopener">http://ip_node1:8080</a></p>
+</blockquote>
+<h4 id="3-Spark-HA有两种方式："><a href="#3-Spark-HA有两种方式：" class="headerlink" title="3.Spark HA有两种方式："></a>3.Spark HA有两种方式：</h4><blockquote>
+<p>回顾一下HA：<br>（<em>）HDFS、Yarn、HBase、Storm、Spark<br>（</em>）单点故障的问题<br>（*）解决方案：HA（High Availability）<br><img src="./主从节点的单点故障.jpg" alt="Alt text"></p>
+</blockquote>
+<p>（1）基于文件目录的单点恢复（测试使用，不用于生产环境）<br>（*）本质：还是只有一个主节点master</p>
+<blockquote>
+<p>恢复目录 —&gt; 保存的是集群的状态和任务的信息<br>重新启动Master，会从恢复目录下读取状态信息</p>
+</blockquote>
+<p>配置方式：<br>在spark-env.sh里对SPARK_DAEMON_JAVA_OPTS里设置：<br>spark.deploy.recoveryMode：设置为FILESYSTEM开启单点恢复功能，默认值：NONE<br>spark.deploy.recoveryDirectory：Spark保存恢复状态的目录<br>执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /root/training/spark-2.1.0-bin-hadoop2.7/recovery</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim spark-env.sh</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>添加 export SPARK_DAEMON_JAVA_OPTS=”-Dspark.deploy.recoveryMode=FILESYSTEM -Dspark.deploy.recoveryDirectory=/root/training/spark-2.1.0-bin-hadoop2.7/recovery”</p>
+</blockquote>
+<p>测试：执行一个Application：启动spark-shell命令行工具（作为一个独立的Application运行在集群上），查看恢复目录，可以看到多了一个app目录。</p>
+<p>（2）基于Zookeeper的Standby的Master<br>（<em>）复习Zookeeper:<br>            （</em>）相当于是一个“数据库”<br>            （*）数据同步、选举功能、分布式锁‘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim spark-env.sh</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>添加 export SPARK_DAEMON_JAVA_OPS=”-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.url=node1:2181,node2:2181,node3:2181 -Dspark.deploy.zookeeper.dir=/spark”</p>
+</blockquote>
+<blockquote>
+<p>另外，注释掉文件恢复的配置内容：<br>/ #export SPARK_MASTER_HOST=node1<br>/ #export SPARK_MASTER_PORT=7077</p>
+</blockquote>
+<h3 id="三、执行Spark的任务：两个工具"><a href="#三、执行Spark的任务：两个工具" class="headerlink" title="三、执行Spark的任务：两个工具"></a>三、执行Spark的任务：两个工具</h3><h4 id="1-spark-submit：用于提交spark的任务（就是一个jar包）"><a href="#1-spark-submit：用于提交spark的任务（就是一个jar包）" class="headerlink" title="1.spark-submit：用于提交spark的任务（就是一个jar包）"></a>1.spark-submit：用于提交spark的任务（就是一个jar包）</h4><p>举例：examples/jars/spark-examples_2.11-2.1.0.jar<br>应用：蒙特卡罗求PI（圆周率）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/spark-submit --master spark://node1:7077 --class org.apache.spark.examples.SparkPi examples/jars/spark-examples_2.11-2.1.0.jar 100</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-spark-shell：相当于REPL，命令行工具，作为一个独立的Application运行"><a href="#2-spark-shell：相当于REPL，命令行工具，作为一个独立的Application运行" class="headerlink" title="2.spark-shell：相当于REPL，命令行工具，作为一个独立的Application运行"></a>2.spark-shell：相当于REPL，命令行工具，作为一个独立的Application运行</h4><p>两种运行模式：</p>
+<blockquote>
+<p>（1）本地模式：不需要连接到spark集群，在本地直接运行（就像Eclipse），用于开发和测试<br>命令：bin/spark-shell<br>日志：Spark context availavle as ‘sc’ (master=local[*], app id=local-15009234552)</p>
+</blockquote>
+<blockquote>
+<p>（2）集群模式：需要连接到集群<br>命令：bin/spark-shell –master spark://node1:7077<br>日志：Spark context available as ‘sc’ (master = spark://node1:7077, app id=app-2018102549890034-001)<br>在spark-shell中开发程序wordcount：<br>（<em>）处理本地文件  直接打印结果<br>sc.textFile(“/root/temp/input/data.txt”).flatMap(<em>.split(“ “)).map((</em>,1)).reduceByKey(_+_).collect<br>result：Array[(String, Int)] = Array((is,1),(love,2),(capital,1),(Beijing,2),(China,2),(I,2),(of,1),(the,1))<br>（</em>）处理HDFS的文件：输出到HDFS<br>sc.textFile(“hdfs://node1:9000/input/data.txt”).flatMap(<em>.split(“ “)).map((</em>,1)).reduceByKey(_+<em>).saveAsTextFile(“hdfs://node1:9000/output/result”)<br>（*）单步运行wordcount  —&gt;  知识点：RDD<br>val rdd1 = sc.textFile(“/root/temp/input/data.txt”)<br>val rdd2 = rdd1.flatMap(</em>.split(“ “))<br>val rdd3 =  rdd2.map((<em>,1))<br>val rdd4 = rdd3.reduceByKey(</em>+_)<br>rdd4.collect()</p>
+</blockquote>
+<h3 id="四、分析Spark的任务流程"><a href="#四、分析Spark的任务流程" class="headerlink" title="四、分析Spark的任务流程"></a>四、分析Spark的任务流程</h3><p>1.分析WordCount数据处理过程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//创建任务的配置信息，如果集群上运行不需要设置Master</span><br><span class="line">val conf = new SparkConf().setAppName(&quot;MyWordCount&quot;).setMaster(&quot;local&quot;)</span><br><span class="line">//创建sparkContext对象</span><br><span class="line">val sc = new SparkContext(conf)</span><br><span class="line"></span><br><span class="line">val result = sc.textFile(&quot;&quot;)</span><br><span class="line">	.flatMap(_.split(&quot; &quot;))</span><br><span class="line">	.map((_,1))</span><br><span class="line">	.reduceByKey</span><br></pre></td></tr></table></figure></p>
+<p>2.Spark调度任务的过程</p>
+<h3 id="五、RDD和RDD的特性、RDD的算子（函数、方法）"><a href="#五、RDD和RDD的特性、RDD的算子（函数、方法）" class="headerlink" title="五、RDD和RDD的特性、RDD的算子（函数、方法）"></a>五、RDD和RDD的特性、RDD的算子（函数、方法）</h3><p>1.RDD：弹性分布式数据集<br>2.特性：（1）依赖关系：宽依赖、窄依赖<br>3.算子（函数）：（1）Transformation：会延时加载（计算） （2）Action：触发计算</p>
+<h3 id="六、RDD高级算子"><a href="#六、RDD高级算子" class="headerlink" title="六、RDD高级算子"></a>六、RDD高级算子</h3><h3 id="七、编程案例"><a href="#七、编程案例" class="headerlink" title="七、编程案例"></a>七、编程案例</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://shining160.github.io/2018/11/17/hello-world/" data-id="cjokdmmz70000hgq8ebrsknqj" class="article-share-link">Share</a>
+      <a data-url="https://shining160.github.io/2018/11/10/spark详解/" data-id="cjokdtm7a0000psq8mp259tpj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -151,15 +201,15 @@
       <ul>
         
           <li>
-            <a href="/2018/11/17/spark详解/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/17/git教程/">(no title)</a>
-          </li>
-        
-          <li>
             <a href="/2018/11/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/12/git教程/">Git使用教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/10/spark详解/">Spark详解</a>
           </li>
         
       </ul>

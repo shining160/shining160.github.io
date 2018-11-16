@@ -5,23 +5,23 @@
   
 
   
-  <title>平凡的技术爱好者，怀着伟大的梦想</title>
+  <title>Spark详解 | 平凡的技术爱好者，怀着伟大的梦想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Spark详解Spark生态圈 Spark Core：最重要，其中最重要的是RDD（弹性分布式数据集）Spark SQLSpark StreamingSpark MLlib：协同回归、ALS、逻辑回归Spark Graphx：图计算  Spark Core一.什么是Spark？特点？官网：spark.apache.org，是一个大规模的分布式数据处理引擎类似MapReduce，Spark只有数据计">
+  <meta name="description" content="Spark生态圈 Spark Core：最重要，其中最重要的是RDD（弹性分布式数据集）Spark SQLSpark StreamingSpark MLlib：协同回归、ALS、逻辑回归Spark Graphx：图计算  Spark Core一.什么是Spark？特点？官网：spark.apache.org，是一个大规模的分布式数据处理引擎类似MapReduce，Spark只有数据计算，不负责存储">
 <meta name="keywords" content="技术开发，大数据，hadoop，spark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="平凡的技术爱好者，怀着伟大的梦想">
-<meta property="og:url" content="https://shining160.github.io/2018/11/17/spark详解/index.html">
+<meta property="og:title" content="Spark详解">
+<meta property="og:url" content="https://shining160.github.io/2018/11/10/spark详解/index.html">
 <meta property="og:site_name" content="平凡的技术爱好者，怀着伟大的梦想">
-<meta property="og:description" content="Spark详解Spark生态圈 Spark Core：最重要，其中最重要的是RDD（弹性分布式数据集）Spark SQLSpark StreamingSpark MLlib：协同回归、ALS、逻辑回归Spark Graphx：图计算  Spark Core一.什么是Spark？特点？官网：spark.apache.org，是一个大规模的分布式数据处理引擎类似MapReduce，Spark只有数据计">
+<meta property="og:description" content="Spark生态圈 Spark Core：最重要，其中最重要的是RDD（弹性分布式数据集）Spark SQLSpark StreamingSpark MLlib：协同回归、ALS、逻辑回归Spark Graphx：图计算  Spark Core一.什么是Spark？特点？官网：spark.apache.org，是一个大规模的分布式数据处理引擎类似MapReduce，Spark只有数据计算，不负责存储">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://shining160.github.io/2018/11/17/spark详解/spark架构.jpg">
-<meta property="og:image" content="https://shining160.github.io/2018/11/17/spark详解/主从节点的单点故障.jpg">
-<meta property="og:updated_time" content="2018-11-16T18:38:50.497Z">
+<meta property="og:image" content="https://shining160.github.io/2018/11/10/spark详解/spark架构.jpg">
+<meta property="og:image" content="https://shining160.github.io/2018/11/10/spark详解/主从节点的单点故障.jpg">
+<meta property="og:updated_time" content="2018-11-16T18:53:32.961Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="平凡的技术爱好者，怀着伟大的梦想">
-<meta name="twitter:description" content="Spark详解Spark生态圈 Spark Core：最重要，其中最重要的是RDD（弹性分布式数据集）Spark SQLSpark StreamingSpark MLlib：协同回归、ALS、逻辑回归Spark Graphx：图计算  Spark Core一.什么是Spark？特点？官网：spark.apache.org，是一个大规模的分布式数据处理引擎类似MapReduce，Spark只有数据计">
-<meta name="twitter:image" content="https://shining160.github.io/2018/11/17/spark详解/spark架构.jpg">
+<meta name="twitter:title" content="Spark详解">
+<meta name="twitter:description" content="Spark生态圈 Spark Core：最重要，其中最重要的是RDD（弹性分布式数据集）Spark SQLSpark StreamingSpark MLlib：协同回归、ALS、逻辑回归Spark Graphx：图计算  Spark Core一.什么是Spark？特点？官网：spark.apache.org，是一个大规模的分布式数据处理引擎类似MapReduce，Spark只有数据计算，不负责存储">
+<meta name="twitter:image" content="https://shining160.github.io/2018/11/10/spark详解/spark架构.jpg">
   
     <link rel="alternate" href="/atom.xml" title="平凡的技术爱好者，怀着伟大的梦想" type="application/atom+xml">
   
@@ -74,17 +74,27 @@
       <div class="outer">
         <section id="main"><article id="post-spark详解" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/11/17/spark详解/" class="article-date">
-  <time datetime="2018-11-16T18:37:22.804Z" itemprop="datePublished">2018-11-16</time>
+    <a href="/2018/11/10/spark详解/" class="article-date">
+  <time datetime="2018-11-10T00:00:00.000Z" itemprop="datePublished">2018-11-10</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spark详解
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Spark详解"><a href="#Spark详解" class="headerlink" title="Spark详解"></a>Spark详解</h1><h2 id="Spark生态圈"><a href="#Spark生态圈" class="headerlink" title="Spark生态圈"></a>Spark生态圈</h2><blockquote>
+        <h2 id="Spark生态圈"><a href="#Spark生态圈" class="headerlink" title="Spark生态圈"></a>Spark生态圈</h2><blockquote>
 <p>Spark Core：最重要，其中最重要的是RDD（弹性分布式数据集）<br>Spark SQL<br>Spark Streaming<br>Spark MLlib：协同回归、ALS、逻辑回归<br>Spark Graphx：图计算</p>
 </blockquote>
 <h2 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h2><h3 id="一-什么是Spark？特点？"><a href="#一-什么是Spark？特点？" class="headerlink" title="一.什么是Spark？特点？"></a>一.什么是Spark？特点？</h3><p>官网：spark.apache.org，是一个大规模的分布式数据处理引擎<br>类似MapReduce，Spark只有数据计算，不负责存储，所以不能完全取代Hadoop<br>特点：快、易用、通用、兼容<br>为什么学习Spark? 基于内存，计算速度快。<br>MapReduce 2.x的核心是Shuffle，但会产生大量IO操作，影响性能。而Spark基于内存，有更快的处理速度。</p>
@@ -147,7 +157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://shining160.github.io/2018/11/17/spark详解/" data-id="cjokdmmzd0001hgq8ibbd2dj9" class="article-share-link">Share</a>
+      <a data-url="https://shining160.github.io/2018/11/10/spark详解/" data-id="cjokdtm7a0000psq8mp259tpj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -156,11 +166,15 @@
     
 <nav id="article-nav">
   
-  
-    <a href="/2018/11/17/git教程/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title"></div>
+    <a href="/2018/11/12/git教程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Git使用教程
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -196,15 +210,15 @@
       <ul>
         
           <li>
-            <a href="/2018/11/17/spark详解/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/17/git教程/">(no title)</a>
-          </li>
-        
-          <li>
             <a href="/2018/11/17/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/12/git教程/">Git使用教程</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/10/spark详解/">Spark详解</a>
           </li>
         
       </ul>

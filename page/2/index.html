@@ -96,37 +96,22 @@
 </code></pre><h3 id="2-实现原理"><a href="#2-实现原理" class="headerlink" title="2.实现原理"></a>2.实现原理</h3><pre><code>git本身关心文件的整体性是否有改变，git拒绝保持每个文件的版本修订关系，因此查看一个文件的历史需要遍历各个history快照；git隐式处理文件更名，即同名文件默认为其前身，如果没有同名文件则在前一个版本中搜索具有相似内容的文件。
 git更像一个文件系统，直接在本机上获取数据，不必连线到主机端获取数据。每个开发者都可有全部开发历史的本地副本，changes从这种本地repository复制给其他开发者。这些changes作为新增的开发分支被导入，可以与本地开发合并。
 分支是非常轻量级的，一个分支仅是对一个commit的引用。
-</code></pre><h3 id="3-库目录"><a href="#3-库目录" class="headerlink" title="3.库目录"></a>3.库目录</h3><blockquote>
-<p>hooks：存储钩子的文件夹<br>logs：存储日志的文件夹<br>refs：存储指向各个分支的指针（SHA-1标识）文件<br>objects：存放git对象<br>config：存放各种设置文档<br>HEAD：指向当前所在分支的指针文件路径，一般指向refs下的某文件</p>
-</blockquote>
+</code></pre><h3 id="3-库目录"><a href="#3-库目录" class="headerlink" title="3.库目录"></a>3.库目录</h3><p>hooks：存储钩子的文件夹<br>logs：存储日志的文件夹<br>refs：存储指向各个分支的指针（SHA-1标识）文件<br>objects：存放git对象<br>config：存放各种设置文档<br>HEAD：指向当前所在分支的指针文件路径，一般指向refs下的某文件</p>
 <h3 id="4-安装配置"><a href="#4-安装配置" class="headerlink" title="4.安装配置"></a>4.安装配置</h3><h4 id="4-1-下载安装包"><a href="#4-1-下载安装包" class="headerlink" title="4.1 下载安装包"></a>4.1 下载安装包</h4><p>Git-2.13.3-64-bit.zip</p>
-<h4 id="4-2-git的安装配置（只有初次使用需要配置）"><a href="#4-2-git的安装配置（只有初次使用需要配置）" class="headerlink" title="4.2 git的安装配置（只有初次使用需要配置）"></a>4.2 git的安装配置（只有初次使用需要配置）</h4><blockquote>
-<p>用户名和邮件<br>git config –global user.name “Janson”<br>git config –global user.email “<a href="mailto:mr_Janson@163.com" target="_blank" rel="noopener">mr_Janson@163.com</a>“</p>
-</blockquote>
-<h4 id="4-3-最基础的本地git操作"><a href="#4-3-最基础的本地git操作" class="headerlink" title="4.3 最基础的本地git操作"></a>4.3 最基础的本地git操作</h4><blockquote>
-<p>git init                              #初始化为本地仓库<br>git add .                           #每次更新都要add，将文件添加到本地缓冲区<br>git commit -m “xxxx”      #添加到本地仓库</p>
-</blockquote>
-<h4 id="4-4-生成秘钥和公钥（只需要生成一次）"><a href="#4-4-生成秘钥和公钥（只需要生成一次）" class="headerlink" title="4.4 生成秘钥和公钥（只需要生成一次）"></a>4.4 生成秘钥和公钥（只需要生成一次）</h4><blockquote>
-<p>ssh-keygen -t rsa<br><strong>如果不清楚就一路按回车，大概三四次</strong><br>程序会提示输入秘钥的文件名，一路按回车即可。然后要求输入一个密码，将来在使用秘钥的时候需要提供这个密码。可以输入，也可以不输入直接回车（无论是否输入，都会要求确认一次）。确认完毕，程序将生成一对秘钥存放在以下文件。<br>秘钥分成两个文件，存放在C://user/username/.ssh这个隐藏目录下，一个私钥（id_rsa）、一个公钥（id_rsa.pub）。</p>
-</blockquote>
+<h4 id="4-2-git的安装配置（只有初次使用需要配置）"><a href="#4-2-git的安装配置（只有初次使用需要配置）" class="headerlink" title="4.2 git的安装配置（只有初次使用需要配置）"></a>4.2 git的安装配置（只有初次使用需要配置）</h4><p>用户名和邮件<br>git config –global user.name “Janson”<br>git config –global user.email “<a href="mailto:mr_Janson@163.com" target="_blank" rel="noopener">mr_Janson@163.com</a>“</p>
+<h4 id="4-3-最基础的本地git操作"><a href="#4-3-最基础的本地git操作" class="headerlink" title="4.3 最基础的本地git操作"></a>4.3 最基础的本地git操作</h4><p>git init                              #初始化为本地仓库<br>git add .                           #每次更新都要add，将文件添加到本地缓冲区<br>git commit -m “xxxx”      #添加到本地仓库</p>
+<h4 id="4-4-生成秘钥和公钥（只需要生成一次）"><a href="#4-4-生成秘钥和公钥（只需要生成一次）" class="headerlink" title="4.4 生成秘钥和公钥（只需要生成一次）"></a>4.4 生成秘钥和公钥（只需要生成一次）</h4><p>ssh-keygen -t rsa<br><strong>如果不清楚就一路按回车，大概三四次</strong><br>程序会提示输入秘钥的文件名，一路按回车即可。然后要求输入一个密码，将来在使用秘钥的时候需要提供这个密码。可以输入，也可以不输入直接回车（无论是否输入，都会要求确认一次）。确认完毕，程序将生成一对秘钥存放在以下文件。<br>秘钥分成两个文件，存放在C://user/username/.ssh这个隐藏目录下，一个私钥（id_rsa）、一个公钥（id_rsa.pub）。</p>
 <h4 id="4-5-注册代码托管平台账号"><a href="#4-5-注册代码托管平台账号" class="headerlink" title="4.5 注册代码托管平台账号"></a>4.5 注册代码托管平台账号</h4><p>最出名的是GitHub，纯英文，在国外，速度略慢<br>coding.net 国内速度不错<br>csdn<br>开源中国</p>
-<h4 id="4-5-添加公钥"><a href="#4-5-添加公钥" class="headerlink" title="4.5 添加公钥"></a>4.5 添加公钥</h4><p>找到setting，给key填一个名字，再将本地id_rsa.pub文件内的内容粘贴过去。<br>创建项目命名为Janson_demo，则系统创建的两个访问地址为：<br><strong>HTTPS</strong>  <a href="https://git.coding.net/Janson/Janson_demo.git" target="_blank" rel="noopener">https://git.coding.net/Janson/Janson_demo.git</a><br><strong>SSH</strong>  <a href="mailto:git@git.coding.net" target="_blank" rel="noopener">git@git.coding.net</a>:Janson/Janson_demo.git</p>
-<blockquote>
-<p>在命令行中创建Git仓库并同步到远程仓库：<br>mkdir Janson_demo<br>cd Janson_demo<br>git init<br>echo “# Janson_demo” &gt;&gt; README.md<br>git add README.md<br>git commit -m “first commit”<br>git remote add orgin <a href="mailto:git@git.coding.net" target="_blank" rel="noopener">git@git.coding.net</a>:Janson/Janson_demo.git<br>git push -u orgin master</p>
-</blockquote>
-<h4 id="4-6-把本地仓库和远程仓库关联"><a href="#4-6-把本地仓库和远程仓库关联" class="headerlink" title="4.6 把本地仓库和远程仓库关联"></a>4.6 把本地仓库和远程仓库关联</h4><blockquote>
-<p>git remote add orgin <a href="mailto:git@git.coding.net" target="_blank" rel="noopener">git@git.coding.net</a>:Janson/Janson_demo.git<br>命令讲解：<br>orgin 是我们给远程仓库取的名称，可以随意，用来区分多个远程仓库。</p>
-</blockquote>
-<h4 id="4-7-把本地代码推送到远程仓库"><a href="#4-7-把本地代码推送到远程仓库" class="headerlink" title="4.7 把本地代码推送到远程仓库"></a>4.7 把本地代码推送到远程仓库</h4><blockquote>
-<p>git push orgin master<br>强制覆盖远程仓库：<br>giy push orgin master -f</p>
-</blockquote>
+<h4 id="4-5-添加公钥"><a href="#4-5-添加公钥" class="headerlink" title="4.5 添加公钥"></a>4.5 添加公钥</h4><p>找到setting，给key填一个名字，再将本地id_rsa.pub文件内的内容粘贴过去。<br>创建项目命名为Janson_demo，则系统创建的两个访问地址为：<br><strong>HTTPS</strong>  <a href="https://git.coding.net/Janson/Janson_demo.git" target="_blank" rel="noopener">https://git.coding.net/Janson/Janson_demo.git</a><br><strong>SSH</strong>  <a href="mailto:git@git.coding.net" target="_blank" rel="noopener">git@git.coding.net</a>:Janson/Janson_demo.git<br>在命令行中创建Git仓库并同步到远程仓库：<br>mkdir Janson_demo<br>cd Janson_demo<br>git init<br>echo “# Janson_demo” &gt;&gt; README.md<br>git add README.md<br>git commit -m “first commit”<br>git remote add orgin <a href="mailto:git@git.coding.net" target="_blank" rel="noopener">git@git.coding.net</a>:Janson/Janson_demo.git<br>git push -u orgin master</p>
+<h4 id="4-6-把本地仓库和远程仓库关联"><a href="#4-6-把本地仓库和远程仓库关联" class="headerlink" title="4.6 把本地仓库和远程仓库关联"></a>4.6 把本地仓库和远程仓库关联</h4><p>git remote add orgin <a href="mailto:git@git.coding.net" target="_blank" rel="noopener">git@git.coding.net</a>:Janson/Janson_demo.git<br>命令讲解：<br>orgin 是我们给远程仓库取的名称，可以随意，用来区分多个远程仓库。</p>
+<h4 id="4-7-把本地代码推送到远程仓库"><a href="#4-7-把本地代码推送到远程仓库" class="headerlink" title="4.7 把本地代码推送到远程仓库"></a>4.7 把本地代码推送到远程仓库</h4><p>git push orgin master<br>强制覆盖远程仓库：<br>giy push orgin master -f</p>
 <h4 id="4-8-远程仓库和git的通俗理解"><a href="#4-8-远程仓库和git的通俗理解" class="headerlink" title="4.8 远程仓库和git的通俗理解"></a>4.8 远程仓库和git的通俗理解</h4><p>git其实主要是在本地操作，所谓commit，回滚都是指本地开发。push到远程仓库后根本不能回滚。git主要是用来做版本控制的，托管平台是git的云服务器（当然自己也可以架设一台服务器，但是有现成的就不那么麻烦了）。git本地操作完后上传到GitHub，或者把GitHub上的东西更新到本地，git相当于百度云客户端，托管后台相当于百度云后台。</p>
 <h4 id="4-9-add-commit-push的区别"><a href="#4-9-add-commit-push的区别" class="headerlink" title="4.9 add  commit  push的区别"></a>4.9 add  commit  push的区别</h4><p>【（本地工作目录）—add—&gt;（缓冲区）—commit—&gt;（本地的git仓库）====push====&gt;【托管平台】</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://shining160.github.io/2018/11/12/git教程/" data-id="cjolawgya00007wq8vfd7rqxf" class="article-share-link">Share</a>
+      <a data-url="https://shining160.github.io/2018/11/12/git教程/" data-id="cjor6h6fy000088q8476h5m45" class="article-share-link">Share</a>
       
       
     </footer>
